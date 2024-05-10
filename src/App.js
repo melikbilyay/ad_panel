@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import combinedData from './server/combined.js';
+import data from "./metadataAndURLs";
 
 function App() {
     const [index, setIndex] = useState(0);
@@ -7,7 +8,7 @@ function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = new Date().getHours();
-            const activePerson = combinedData.find(person => {
+            const activePerson = data.find(person => {
                 const { start, end } = person.workingHours;
                 if (start <= end) {
                     return currentTime >= start && currentTime < end;
@@ -17,7 +18,7 @@ function App() {
             });
 
             if (activePerson) {
-                const activeIndex = combinedData.indexOf(activePerson);
+                const activeIndex = data.indexOf(activePerson);
                 setIndex(activeIndex);
             }
         }, 1000);
@@ -28,7 +29,7 @@ function App() {
     return (
         <section className="section">
             <div className="section-center">
-                {combinedData.map((person, personIndex) => {
+                {data.map((person, personIndex) => {
                     const { id, url, workingHours } = person;
 
                     let position = 'nextSlide';
@@ -37,7 +38,7 @@ function App() {
                     }
                     if (
                         personIndex === index - 1 ||
-                        (index === 0 && personIndex === combinedData.length - 1)
+                        (index === 0 && personIndex === data.length - 1)
                     ) {
                         position = 'lastSlide';
                     }
@@ -45,7 +46,6 @@ function App() {
                     return (
                         <article className={position} key={id}>
                             <img src={url} alt={`Person ${id}`} className="person-img" />
-                            <p>Çalışma Saatleri: {workingHours.start} - {workingHours.end}</p>
                         </article>
                     );
                 })}
