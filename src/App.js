@@ -4,7 +4,6 @@ import combinedData from './server/combined.js';
 function App() {
     const [index, setIndex] = useState(0);
 
-
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = new Date().getHours();
