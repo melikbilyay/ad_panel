@@ -3,8 +3,8 @@ const AWS = require('aws-sdk');
 
 // AWS yapılandırmasını yapın
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA2UC3B2ID7M2O2E4K',
-    secretAccessKey: "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",
+    accessKeyId: '-',
+    secretAccessKey: "-",
 });
 
 // AWS S3'den tüm nesnelerin metadata ve URL'lerini alacak işlev
